@@ -13,6 +13,8 @@ final class TileConstants: TrackerConstants {
     override class var name: String { "Tile" }
     
     override class var offeredService: String { "FEED" }
+    override class var hexOfferedService: [UInt8] { [0xED, 0xFE ] }
+                                                    
     
     override class var supportsBackgroundScanning: Bool { true }
     

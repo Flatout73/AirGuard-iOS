@@ -23,108 +23,113 @@ struct API {
     /// Returns true when the ping to the server has been successful
     /// - Returns: True when succesful
     static func pingServer() async -> Bool {
-        do {
-            var request = URLRequest(url: baseURL.appendingPathComponent("ping"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
-            
-            request = addAuthentication(request: request)
-            
-            let (data, _) = try await URLSession.shared.asyncData(for: request)
-            
-            let pong = try JSONDecoder().decode(API_Response.Pong.self, from: data)
-            
-            return pong.response.lowercased() == "pong"
-        }catch {
-            log("Failed accessing the server \(error.localizedDescription)")
-            return false
-        }
+        return false
+//        do {
+//            var request = URLRequest(url: baseURL.appendingPathComponent("ping"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+//            
+//            request = addAuthentication(request: request)
+//            
+//            let (data, _) = try await URLSession.shared.asyncData(for: request)
+//            
+//            let pong = try JSONDecoder().decode(API_Response.Pong.self, from: data)
+//            
+//            return pong.response.lowercased() == "pong"
+//        }catch {
+//            log("Failed accessing the server \(error.localizedDescription)")
+//            return false
+//        }
     }
     
     /// Get a new token. This also creates a new DataDonor. Should only be done once per App installation.
     static func getToken() async throws -> API_Response.Token {
-        var request = URLRequest(url: baseURL.appendingPathComponent("get_token"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+//        var request = URLRequest(url: baseURL.appendingPathComponent("get_token"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+//        
+//        request = addAuthentication(request: request)
+//        
+//        let (data, _) = try await URLSession.shared.asyncData(for: request)
+//        
+//        let token = try JSONDecoder().decode(API_Response.Token.self, from: data)
+//        
+//        return token
         
-        request = addAuthentication(request: request)
-        
-        let (data, _) = try await URLSession.shared.asyncData(for: request)
-        
-        let token = try JSONDecoder().decode(API_Response.Token.self, from: data)
-        
-        return token
+        return API_Response.Token(token: "")
     }
     
     static func donateData(token: String, devices: [API_Request.Device]) async throws  {
         
-        #if DEBUG
-        // Don't allow data donations to the production server in debug builds
-        guard !baseURL.absoluteString.lowercased().contains("tpe.seemoo.tu-darmstadt.de") else {
-            return
-        }
-        #endif
-        
-        var request = URLRequest(url: baseURL.appendingPathComponent("donate_data"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
-        request.httpMethod = "POST"
-        
-        request.setValue(token, forHTTPHeaderField: "token")
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request = addAuthentication(request: request)
-        
-        // Add the JSON body
-        let jsonencoder = JSONEncoder()
-        jsonencoder.dateEncodingStrategy = .iso8601
-        let deviceListData = try jsonencoder.encode(devices)
-        #if DEBUG
-        log("DeviceListData \(String(data: deviceListData, encoding: .utf8)!)")
-        log("HTTP headers \(String(describing: request.allHTTPHeaderFields))")
-        #endif
-        request.httpBody = deviceListData
-        
-        let (data, response) = try await URLSession.shared.asyncData(for: request)
-
-        // Check for errors
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode < 300 else {
-            throw API_Error.statusCode(code: (response as? HTTPURLResponse)?.statusCode ?? -1, body: data)
-        }
+//        #if DEBUG
+//        // Don't allow data donations to the production server in debug builds
+//        guard !baseURL.absoluteString.lowercased().contains("tpe.seemoo.tu-darmstadt.de") else {
+//            return
+//        }
+//        #endif
+//        
+//        var request = URLRequest(url: baseURL.appendingPathComponent("donate_data"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+//        request.httpMethod = "POST"
+//        
+//        request.setValue(token, forHTTPHeaderField: "token")
+//        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+//        request = addAuthentication(request: request)
+//        
+//        // Add the JSON body
+//        let jsonencoder = JSONEncoder()
+//        jsonencoder.dateEncodingStrategy = .iso8601
+//        let deviceListData = try jsonencoder.encode(devices)
+//        #if DEBUG
+//        log("DeviceListData \(String(data: deviceListData, encoding: .utf8)!)")
+//        log("HTTP headers \(String(describing: request.allHTTPHeaderFields))")
+//        #endif
+//        request.httpBody = deviceListData
+//        
+//        let (data, response) = try await URLSession.shared.asyncData(for: request)
+//
+//        // Check for errors
+//        guard let httpResponse = response as? HTTPURLResponse,
+//              httpResponse.statusCode < 300 else {
+//            throw API_Error.statusCode(code: (response as? HTTPURLResponse)?.statusCode ?? -1, body: data)
+//        }
     }
     
     static func deleteStudyData(token: String) async throws {
-        #if DEBUG
-        // Don't allow interactions with the production server in debug builds
-        guard !baseURL.absoluteString.lowercased().contains("tpe.seemoo.tu-darmstadt.de") else {
-            return
-        }
-        #endif
-
-        var request = URLRequest(url: baseURL.appendingPathComponent("delete_study_data"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
-        request.httpMethod = "DELETE"
-
-        request.setValue(token, forHTTPHeaderField: "token")
-        request = addAuthentication(request: request)
-
-
-        let (data, response) = try await URLSession.shared.asyncData(for: request)
-
-        // Check for errors
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode < 300 else {
-            throw API_Error.statusCode(code: (response as? HTTPURLResponse)?.statusCode ?? -1, body: data)
-        }
+//        #if DEBUG
+//        // Don't allow interactions with the production server in debug builds
+//        guard !baseURL.absoluteString.lowercased().contains("tpe.seemoo.tu-darmstadt.de") else {
+//            return
+//        }
+//        #endif
+//
+//        var request = URLRequest(url: baseURL.appendingPathComponent("delete_study_data"), cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10.0)
+//        request.httpMethod = "DELETE"
+//
+//        request.setValue(token, forHTTPHeaderField: "token")
+//        request = addAuthentication(request: request)
+//
+//
+//        let (data, response) = try await URLSession.shared.asyncData(for: request)
+//
+//        // Check for errors
+//        guard let httpResponse = response as? HTTPURLResponse,
+//              httpResponse.statusCode < 300 else {
+//            throw API_Error.statusCode(code: (response as? HTTPURLResponse)?.statusCode ?? -1, body: data)
+//        }
     }
     
     /// Adds authentication and a user-agent to the HTTP request
     /// - Parameter request: a url request that should get the necessary header fields
     /// - Returns: authenticated url request 
     static func addAuthentication(request: URLRequest) -> URLRequest {
-        var authenticatedRequest = request
-        authenticatedRequest.setValue("Api-Key \(apiKey)", forHTTPHeaderField: "Authorization")
-        authenticatedRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+//        var authenticatedRequest = request
+//        authenticatedRequest.setValue("Api-Key \(apiKey)", forHTTPHeaderField: "Authorization")
+//        authenticatedRequest.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+//        
+//        //Adding the timezone so we know when a tracker has been found
+//        if let timezone = TimeZone.current.abbreviation() {
+//            authenticatedRequest.setValue(timezone, forHTTPHeaderField: "X-Timezone")
+//        }
+//        
+//        return authenticatedRequest
         
-        //Adding the timezone so we know when a tracker has been found
-        if let timezone = TimeZone.current.abbreviation() {
-            authenticatedRequest.setValue(timezone, forHTTPHeaderField: "X-Timezone")
-        }
-        
-        return authenticatedRequest
+        return URLRequest(url: URL(string: "")!)
     }
 }
 

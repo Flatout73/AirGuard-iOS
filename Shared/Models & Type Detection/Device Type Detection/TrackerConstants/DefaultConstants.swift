@@ -16,6 +16,7 @@ class TrackerConstants {
     
     /// A service which the tracker offers. If `supportsBackgroundScanning` is `false`, this service is not contained in the advertisement data. Can be used for identification.
     class var offeredService: String? { nil }
+    class var hexOfferedService: [UInt8] { [] }
     
     /// Shows if the tracker can be found in the background. This implies that `alwaysAdvertisedService` is advertised even when the tracker is not connected.
     class var supportsBackgroundScanning: Bool { false }

@@ -12,6 +12,7 @@ import CoreData
 struct DetailMapView: View {
     
     @ObservedObject var tracker: BaseDevice
+    @ObservedObject var bluetoothData: BluetoothTempData
     @State var smallMapFinishedLoading = false
     
     var body: some View {
@@ -25,7 +26,10 @@ struct DetailMapView: View {
                 let annotations = coordinates.map({MapAnnotation(clusteredLocation: $0)})
                 
                 if(annotations.count > 0) {
-                    
+                    NavigationLink(destination: LocationsListView(locations: coordinates, blueoothData: bluetoothData, tracker: tracker),
+                                   label: {
+                        Text("Locations")
+                    })
                     LUILink(style: .Plain, destination:
                         MapView(annotations: annotations, connections: connections, mapFinishedLoading: .constant(true))
                             .ignoresSafeArea(.all, edges: [.horizontal, .bottom])
@@ -183,7 +187,7 @@ struct Previews_DetailMapView_Previews: PreviewProvider {
         
         return ZStack {
             Color.defaultBackground.ignoresSafeArea()
-            DetailMapView(tracker: device)
+            DetailMapView(tracker: device, bluetoothData: BluetoothTempData(identifier: ""))
                 .environment(\.managedObjectContext, vc)
         }
     }

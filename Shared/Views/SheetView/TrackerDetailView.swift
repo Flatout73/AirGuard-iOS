@@ -31,7 +31,7 @@ struct TrackerDetailView: View {
 
             DetailTopView(tracker: tracker, bluetoothData: bluetoothData, notCurrentlyReachable: notCurrentlyReachable)
 
-            DetailMapView(tracker: tracker)
+            DetailMapView(tracker: tracker, bluetoothData: bluetoothData)
             
             if showingBanner {
                 FeedbackBannerView(showSheet: $showFeedbackSheet, tracker: tracker)

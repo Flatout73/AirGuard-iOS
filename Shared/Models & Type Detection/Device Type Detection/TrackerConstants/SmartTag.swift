@@ -13,6 +13,7 @@ final class SmartTagConstants: TrackerConstants {
     override class var name: String { "Samsung SmartTag" }
     
     override class var offeredService: String { "FD5A" }
+    override class var hexOfferedService: [UInt8] { [0x5A, 0xFD] }
     
     override class var supportsBackgroundScanning: Bool { true }
     

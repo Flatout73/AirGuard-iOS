@@ -8,12 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		788AA4A02988285700DB6EAA /* AppDelegate+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788AA49F2988285700DB6EAA /* AppDelegate+Debug.swift */; };
-		78AFC5E92A126CF00005AB59 /* API_KEYS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AFC5E82A126CF00005AB59 /* API_KEYS.swift */; };
 		78D842742980242D00B13B49 /* SendStatisticsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D842732980242D00B13B49 /* SendStatisticsController.swift */; };
 		78D84276298024B300B13B49 /* URLSessionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D84275298024B300B13B49 /* URLSessionExtension.swift */; };
 		78D842782980252700B13B49 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D842772980252700B13B49 /* Api.swift */; };
 		78D842802982C6A500B13B49 /* AirGuardApiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78D8427F2982C6A500B13B49 /* AirGuardApiTests.swift */; };
 		78DF6EA1299A72AD00AFACAB /* Chipolo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF6EA0299A72AD00AFACAB /* Chipolo.swift */; };
+		E190CC4F2CD849CB00A8CFA4 /* AirFogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190CC4E2CD849CB00A8CFA4 /* AirFogService.swift */; };
+		E190CC512CD8506500A8CFA4 /* AirFog.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190CC502CD8506500A8CFA4 /* AirFog.swift */; };
+		E190CC532CD8559500A8CFA4 /* LocationsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190CC522CD8559500A8CFA4 /* LocationsListView.swift */; };
+		E190CC552CD8579700A8CFA4 /* AirFogStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E190CC542CD8579700A8CFA4 /* AirFogStore.swift */; };
 		EB01019A28F5520B004520E9 /* DebugMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB01019928F5520B004520E9 /* DebugMapView.swift */; };
 		EB037D38283F85CF0018DF60 /* Clock.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB037D37283F85CF0018DF60 /* Clock.swift */; };
 		EB037D3B283F972E0018DF60 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB037D3A283F972E0018DF60 /* AppDelegate.swift */; };
@@ -122,13 +125,16 @@
 /* Begin PBXFileReference section */
 		785C81D829939E5100547D35 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		788AA49F2988285700DB6EAA /* AppDelegate+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Debug.swift"; sourceTree = "<group>"; };
-		78AFC5E82A126CF00005AB59 /* API_KEYS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_KEYS.swift; sourceTree = "<group>"; };
 		78D842732980242D00B13B49 /* SendStatisticsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendStatisticsController.swift; sourceTree = "<group>"; };
 		78D84275298024B300B13B49 /* URLSessionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionExtension.swift; sourceTree = "<group>"; };
 		78D842772980252700B13B49 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		78D8427D2982C6A500B13B49 /* AirGuardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirGuardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78D8427F2982C6A500B13B49 /* AirGuardApiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirGuardApiTests.swift; sourceTree = "<group>"; };
 		78DF6EA0299A72AD00AFACAB /* Chipolo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chipolo.swift; sourceTree = "<group>"; };
+		E190CC4E2CD849CB00A8CFA4 /* AirFogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFogService.swift; sourceTree = "<group>"; };
+		E190CC502CD8506500A8CFA4 /* AirFog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFog.swift; sourceTree = "<group>"; };
+		E190CC522CD8559500A8CFA4 /* LocationsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsListView.swift; sourceTree = "<group>"; };
+		E190CC542CD8579700A8CFA4 /* AirFogStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AirFogStore.swift; sourceTree = "<group>"; };
 		EB01019928F5520B004520E9 /* DebugMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugMapView.swift; sourceTree = "<group>"; };
 		EB037D37283F85CF0018DF60 /* Clock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clock.swift; sourceTree = "<group>"; };
 		EB037D3A283F972E0018DF60 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -253,7 +259,6 @@
 			children = (
 				78D842732980242D00B13B49 /* SendStatisticsController.swift */,
 				78D842772980252700B13B49 /* Api.swift */,
-				78AFC5E82A126CF00005AB59 /* API_KEYS.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -264,6 +269,17 @@
 				78D8427F2982C6A500B13B49 /* AirGuardApiTests.swift */,
 			);
 			path = AirGuardTests;
+			sourceTree = "<group>";
+		};
+		E190CC4D2CD8497A00A8CFA4 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E190CC4E2CD849CB00A8CFA4 /* AirFogService.swift */,
+				E190CC502CD8506500A8CFA4 /* AirFog.swift */,
+				E190CC522CD8559500A8CFA4 /* LocationsListView.swift */,
+				E190CC542CD8579700A8CFA4 /* AirFogStore.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		EB03E39B2850DC89000B9BE1 /* Frameworks */ = {
@@ -394,6 +410,7 @@
 		EB8D574028099EAD006B1BB8 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				E190CC4D2CD8497A00A8CFA4 /* Service */,
 				78D842722980241400B13B49 /* Statistics */,
 				EBC7CBDC282047FD00167E29 /* Views */,
 				EB5FAE37284E308E00D5A20A /* Models & Type Detection */,
@@ -653,12 +670,14 @@
 				EB5F8A712833C0F200ED2CD3 /* SoundManager.swift in Sources */,
 				EB597BE0284CABAD00CC55F2 /* StudyOptInView.swift in Sources */,
 				EBC49C012860977B0055FA84 /* BluetoothManagerTimer.swift in Sources */,
+				E190CC552CD8579700A8CFA4 /* AirFogStore.swift in Sources */,
 				EBB808B72897FD60004F3F26 /* DetailTopView.swift in Sources */,
 				EB16744928FB4F5D00A97500 /* BluetoothTempData.swift in Sources */,
 				EB76BCCD282177F000CD5CC5 /* SecondsString.swift in Sources */,
 				EBE6ABBC284CA256002958E8 /* BluetoothPermissionView.swift in Sources */,
 				EBB808BD2897FFA0004F3F26 /* DetailNotificationsView.swift in Sources */,
 				EB76BCCF282177F000CD5CC5 /* RSSIDecoder.swift in Sources */,
+				E190CC512CD8506500A8CFA4 /* AirFog.swift in Sources */,
 				EB03E3E728521859000B9BE1 /* BaseDeviceExtensions.swift in Sources */,
 				EB6186B8282AABA70092280F /* CustomLabel.swift in Sources */,
 				EB5FAE2B284E05A500D5A20A /* FindMyDevice.swift in Sources */,
@@ -678,6 +697,8 @@
 				EBC7CBDA282047DF00167E29 /* DeviceListEntryView.swift in Sources */,
 				EB597BDE284CA9DB00CC55F2 /* LocationPermissionView.swift in Sources */,
 				EB6C61C528250351001ABF81 /* RSSIIndicator.swift in Sources */,
+				E190CC4F2CD849CB00A8CFA4 /* AirFogService.swift in Sources */,
+				E190CC532CD8559500A8CFA4 /* LocationsListView.swift in Sources */,
 				EB76BCD1282177F000CD5CC5 /* ViewExtensions.swift in Sources */,
 				78D842782980252700B13B49 /* Api.swift in Sources */,
 				EB2CF6A32B90BE1B008B723A /* TrackerForgetView.swift in Sources */,
@@ -699,7 +720,6 @@
 				EB8CB3662832894A00BAB10D /* SettingsView.swift in Sources */,
 				EB76C7D02C11DB0B00C0A2ED /* Google.swift in Sources */,
 				EB3BFB86289D284C001839BF /* EnableObservationView.swift in Sources */,
-				78AFC5E92A126CF00005AB59 /* API_KEYS.swift in Sources */,
 				EB2CF6A12B90AA6A008B723A /* ConnectionStatus.swift in Sources */,
 				EB8D575128099EB1006B1BB8 /* AirGuardApp.swift in Sources */,
 				EB6186B5282AAA900092280F /* CustomForm.swift in Sources */,
@@ -930,7 +950,7 @@
 				CODE_SIGN_ENTITLEMENTS = "AirGuard (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = K2B79VWGA3;
+				DEVELOPMENT_TEAM = U4G94CQGB9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AirGuard--iOS--Info.plist";
@@ -950,7 +970,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.tu-darmstadt.seemoo.airguard";
+				PRODUCT_BUNDLE_IDENTIFIER = vie.uni.airguard;
 				PRODUCT_NAME = AirGuard;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -973,7 +993,7 @@
 				CODE_SIGN_ENTITLEMENTS = "AirGuard (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = K2B79VWGA3;
+				DEVELOPMENT_TEAM = U4G94CQGB9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AirGuard--iOS--Info.plist";
@@ -993,7 +1013,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.tu-darmstadt.seemoo.airguard";
+				PRODUCT_BUNDLE_IDENTIFIER = vie.uni.airguard;
 				PRODUCT_NAME = AirGuard;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

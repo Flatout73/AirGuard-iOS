@@ -144,7 +144,7 @@ struct PersistenceController {
 struct AppGroup {
     
     /// Identifier of the app group
-    static let appGroupName = "group." + Bundle.main.bundleIdentifier!
+    static let appGroupName = "group." + "uni.airguard"
     
     /// Container URL of the app group
     static var containerURL: URL {
