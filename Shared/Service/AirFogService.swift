@@ -34,6 +34,7 @@ actor AirFogService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try jsonEncoder.encode(airFog)
         request.allHTTPHeaderFields = ["x-api-key": apiKey]
-        _ = try await URLSession.shared.data(for: request)
+        let (data, _) = try await URLSession.shared.data(for: request)
+        print(String(data: data, encoding: .utf8))
     }
 }

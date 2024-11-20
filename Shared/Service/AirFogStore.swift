@@ -38,12 +38,12 @@ class AirFogStore: ObservableObject {
 //        }
                                             
         if let service = tracker.getType.constants.offeredService {
-            let servData = bluetoothData.advertisementData_background[CBAdvertisementDataServiceDataKey]
+            let servData = tracker.bluetoothTempData().advertisementData_background[CBAdvertisementDataServiceDataKey]
             
             if let servData = servData as? [CBUUID : Data],
                 let data = servData[CBUUID(string: service)] {
 
-                advData.append(contentsOf: [UInt8(data.count + 1), 0x16])
+                advData.append(contentsOf: [UInt8(data.count + 3), 0x16])
                 advData.append(contentsOf: tracker.getType.constants.hexOfferedService)
                 advData.append(data)
             }
