@@ -18,18 +18,32 @@ struct LocationsListView: View {
     @ObservedObject
     var tracker: BaseDevice
     
+    @State
+    var statusText: String?
+    
     var body: some View {
         List {
             ForEach(locations, id: \.startDate) { location in
                 HStack {
                     Text(location.location.latitude.description + ", " + location.location.longitude.description)
                     
+                    Spacer()
+                    
                     Button(action: {
-                        airFogStore.send(location: location, tracker: tracker, bluetoothData: blueoothData)
+                        do {
+                            try airFogStore.send(location: location, tracker: tracker, bluetoothData: blueoothData)
+                            statusText = "AirFog sent"
+                        } catch {
+                            statusText = error.localizedDescription
+                        }
                     }) {
                         Text("Send AirFog")
                     }
                 }
+            }
+            
+            if let statusText {
+                Text(statusText)
             }
         }
     }

@@ -16,7 +16,7 @@ class AirFogStore: ObservableObject {
         self.airFogService = airFogService
     }
     
-    func send(location: ClusteredLocation, tracker: BaseDevice, bluetoothData: BluetoothTempData) {
+    func send(location: ClusteredLocation, tracker: BaseDevice, bluetoothData: BluetoothTempData) throws {
         print(bluetoothData.advertisementData_background)
         var advData = Data()
         if bluetoothData.advertisementData_background[CBAdvertisementDataIsConnectable] as? Int == 1 {
@@ -56,7 +56,7 @@ class AirFogStore: ObservableObject {
                                 location: AirLocation(latitude: location.location.latitude, longitude: location.location.longitude),
                                 advertisementData: advData)
             
-            try! await airFogService.postAirFog(airFog)
+            try await airFogService.postAirFog(airFog)
         }
     }
 }

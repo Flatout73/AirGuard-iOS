@@ -10,7 +10,7 @@ import Foundation
 actor AirFogService {
     
     let apiKey: String = "104d5355-f202-4793-afa9-c30c8b946303"
-    let baseURL: String = "https://airfog-backend.onrender.com/relay-ble"
+    let baseURL: String = "http://airfog.sec.univie.ac.at/relay-ble"
     
     private lazy var jsonEncoder: JSONEncoder = {
         let encoder = JSONEncoder()
