@@ -23,6 +23,8 @@ struct LocationsListView: View {
     
     var body: some View {
         List {
+            Text(airFogStore.advDataService(tracker: tracker).hexEncodedString())
+            
             ForEach(locations, id: \.startDate) { location in
                 HStack {
                     Text(location.location.latitude.description + ", " + location.location.longitude.description)

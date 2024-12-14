@@ -59,4 +59,21 @@ class AirFogStore: ObservableObject {
             try await airFogService.postAirFog(airFog)
         }
     }
+    
+    func advDataService(tracker: BaseDevice) -> Data {
+        var advData = Data()
+        if let service = tracker.getType.constants.offeredService {
+            let servData = tracker.bluetoothTempData().advertisementData_background[CBAdvertisementDataServiceDataKey]
+            
+            if let servData = servData as? [CBUUID : Data],
+                let data = servData[CBUUID(string: service)] {
+
+                advData.append(contentsOf: [UInt8(data.count + 3), 0x16])
+                advData.append(contentsOf: tracker.getType.constants.hexOfferedService)
+                advData.append(data)
+            }
+        }
+        
+        return advData
+    }
 }
