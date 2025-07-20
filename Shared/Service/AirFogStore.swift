@@ -20,11 +20,22 @@ class AirFogStore: ObservableObject {
         print(bluetoothData.advertisementData_background)
         var advData = Data()
         if bluetoothData.advertisementData_background[CBAdvertisementDataIsConnectable] as? Int == 1 {
-            advData.append(contentsOf: [0x02, 0x01, 0x06])
+            advData.append(contentsOf: [0x02, 0x01])
+            
+            if tracker.getType == .SmartTag {
+                advData.append(contentsOf: [0x04])
+            } else {
+                advData.append(contentsOf: [0x06])
+            }
         }
   
-        advData.append(contentsOf: [0x03, 0x03])
-        advData.append(contentsOf: tracker.getType.constants.hexOfferedService)
+        if tracker.getType == .Tile {
+            advData.append(contentsOf: [0x03, 0x03])
+            advData.append(contentsOf: tracker.getType.constants.hexOfferedService)
+        } else if tracker.getType == .SmartTag {
+            advData.append(contentsOf: [0x03, 0x02])
+            advData.append(contentsOf: tracker.getType.constants.hexOfferedService)
+        }
 //        getServiceDataKeys(advertisementData: bluetoothData.advertisementData_background).forEach { key in
 //            guard let hexKey = key.hexadecimal else {
 //                return
@@ -56,7 +67,7 @@ class AirFogStore: ObservableObject {
                                 location: AirLocation(latitude: location.location.latitude, longitude: location.location.longitude),
                                 advertisementData: advData)
             
-            try await airFogService.postAirFog(airFog)
+            try await airFogService.postAirFog(airFog, tagName: tracker.getName)
         }
     }
     

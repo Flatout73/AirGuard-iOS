@@ -27,14 +27,15 @@ actor AirFogService {
         return try JSONDecoder().decode(AirFog.self, from: data)
     }
     
-    func postAirFog(_ airFog: AirFog) async throws {
+    func postAirFog(_ airFog: AirFog, tagName: String) async throws {
         let url = URL(string: baseURL)!
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try jsonEncoder.encode(airFog)
-        request.allHTTPHeaderFields = ["x-api-key": apiKey]
+        request.allHTTPHeaderFields = ["x-api-key": apiKey, "User-Agent": tagName]
         let (data, _) = try await URLSession.shared.data(for: request)
         print(String(data: data, encoding: .utf8))
+        
     }
 }
