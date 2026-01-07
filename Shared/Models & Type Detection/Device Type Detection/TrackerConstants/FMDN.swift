@@ -13,6 +13,7 @@ final class GoogleConstants: TrackerConstants {
     override class var name: String { "google_find_my_device".localized() }
     
     override class var offeredService: String { "FEAA" }
+    override class var hexOfferedService: [UInt8] { [0xAA, 0xFE ] }
     
     override class var supportsBackgroundScanning: Bool { true }
     
