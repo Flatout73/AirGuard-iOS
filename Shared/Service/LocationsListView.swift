@@ -23,23 +23,32 @@ struct LocationsListView: View {
     
     var body: some View {
         List {
-            Text(airFogStore.advDataService(tracker: tracker).hexEncodedString())
+            Section(header: Text("Service")) {
+                let string = airFogStore.advDataService(tracker: tracker).hexEncodedString()
+                if string.isEmpty {
+                    Text("No data")
+                } else {
+                    Text(string)
+                }
+            }
             
-            ForEach(locations, id: \.startDate) { location in
-                HStack {
-                    Text(location.location.latitude.description + ", " + location.location.longitude.description)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        do {
-                            try airFogStore.send(location: location, tracker: tracker, bluetoothData: blueoothData)
-                            statusText = "AirFog sent"
-                        } catch {
-                            statusText = error.localizedDescription
+            Section(header: Text("Locations")) {
+                ForEach(locations, id: \.startDate) { location in
+                    HStack {
+                        Text(location.location.latitude.description + ", " + location.location.longitude.description)
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            do {
+                                try airFogStore.send(location: location, tracker: tracker, bluetoothData: blueoothData)
+                                statusText = "AirFog sent"
+                            } catch {
+                                statusText = error.localizedDescription
+                            }
+                        }) {
+                            Text("Send AirFog")
                         }
-                    }) {
-                        Text("Send AirFog")
                     }
                 }
             }
@@ -48,6 +57,7 @@ struct LocationsListView: View {
                 Text(statusText)
             }
         }
+        .navigationTitle("AirFog")
     }
 }
 

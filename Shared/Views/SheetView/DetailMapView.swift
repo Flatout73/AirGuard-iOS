@@ -26,51 +26,54 @@ struct DetailMapView: View {
                 let annotations = coordinates.map({MapAnnotation(clusteredLocation: $0)})
                 
                 if(annotations.count > 0) {
-                    NavigationLink(destination: LocationsListView(locations: coordinates, blueoothData: bluetoothData, tracker: tracker),
-                                   label: {
-                        Text("Locations")
-                    })
-                    LUILink(style: .Plain, destination:
-                        MapView(annotations: annotations, connections: connections, mapFinishedLoading: .constant(true))
+                    VStack {
+                        LUILink(style: .Plain, destination:
+                                    MapView(annotations: annotations, connections: connections, mapFinishedLoading: .constant(true))
                             .ignoresSafeArea(.all, edges: [.horizontal, .bottom])
                             .navigationTitle("tracker_locations")
                             .navigationBarTitleDisplayMode(.inline)
                             .background(ProgressView())
-                        
-                    , label: {
-                        MapView(annotations: annotations, connections: connections, mapFinishedLoading: $smallMapFinishedLoading)
-                            .overlay(
-                                ZStack {
-                                    VStack {
-                                        
-                                        HStack {
-                                            Spacer()
+                                
+                                , label: {
+                            MapView(annotations: annotations, connections: connections, mapFinishedLoading: $smallMapFinishedLoading)
+                                .overlay(
+                                    ZStack {
+                                        VStack {
                                             
-                                            ZStack {
-                                                Blur(style: .systemUltraThinMaterialDark)
-                                                    .cornerRadius(10)
-                                                Image(systemName: "arrow.up.left.and.arrow.down.right")
-                                                    .foregroundColor(.white)
+                                            HStack {
+                                                Spacer()
+                                                
+                                                ZStack {
+                                                    Blur(style: .systemUltraThinMaterialDark)
+                                                        .cornerRadius(10)
+                                                    Image(systemName: "arrow.up.left.and.arrow.down.right")
+                                                        .foregroundColor(.white)
+                                                }
+                                                
+                                                .frame(width: 30, height: 30, alignment: .center)
+                                                .padding()
                                             }
                                             
-                                            .frame(width: 30, height: 30, alignment: .center)
-                                            .padding()
+                                            Spacer()
                                         }
-                                        
-                                        Spacer()
-                                    }
-                                })
-                            .background(ProgressView())
-                            .allowsHitTesting(false)
-                            .compositingGroup()
-                            .frame(height: 200)
-                            .contentShape(Rectangle())
-                            .cornerRadius(20)
+                                    })
+                                .background(ProgressView())
+                                .allowsHitTesting(false)
+                                .compositingGroup()
+                                .frame(height: 200)
+                                .contentShape(Rectangle())
+                                .cornerRadius(20)
+                            
+                        })
+                        .padding(1)
+                        .modifier(FormModifierNoPadding())
+                        .animation(.easeInOut, value: !smallMapFinishedLoading)
                         
-                    })
-                    .padding(1)
-                    .modifier(FormModifierNoPadding())
-                    .animation(.easeInOut, value: !smallMapFinishedLoading)
+                        NavigationLink(destination: LocationsListView(locations: coordinates, blueoothData: bluetoothData, tracker: tracker),
+                                       label: {
+                            Text("AirFog Locations")
+                        })
+                    }
                 }
                 
                 else {
